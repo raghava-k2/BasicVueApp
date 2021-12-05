@@ -4,6 +4,7 @@ import router from './router'
 import PrimeVue from 'primevue/config';
 import Menu from 'primevue/menu';
 import './app.css';
+import 'primeicons/primeicons.css';
 
 createApp(App)
     .use(router)
