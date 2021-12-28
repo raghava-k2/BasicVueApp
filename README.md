@@ -1,4 +1,4 @@
-# cac_vue
+# React App
 
 ## Project setup
 ```
