@@ -9,14 +9,12 @@
         >
           <router-link
             :to="item.route"
-            class="flex items-center"
+            class="flex items-center text-green-700"
             active-class="active-item"
-            exact-path-active-class="active-item"
-            exact-active-class="active-item"
             exact
           >
             <span class="flex-initial">
-              <i class="pi pi-home text-2xl"></i>
+              <i class="text-2xl" v-bind:class="item.icon"></i>
             </span>
             <span class="flex-1 ml-5"> {{ item.label }} </span>
           </router-link>
@@ -33,7 +31,13 @@ export default {
       menus: [
         {
           label: "Home",
-          route: "/home",
+          route: "/",
+          icon: "pi pi-home",
+        },
+        {
+          label: "Login",
+          route: "/login",
+          icon: "pi pi-user",
         },
       ],
     };
@@ -55,7 +59,7 @@ export default {
   user-select: none
   top: 3.5rem
   left: 0rem
-  transition: width .5s linear
+  transition: width .3s linear
   background-color: var(--surface-overlay)
   border-radius: 0px
   padding: 0rem
@@ -65,7 +69,7 @@ export default {
     background: #18353d
 
   .cac-navbar-menu-item .active-item
-    background: #0c4a56
+    color: white
   .cac-navbar-menu-item .pi-home
     font-size: 1.5rem
 </style>

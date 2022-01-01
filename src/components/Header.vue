@@ -1,13 +1,15 @@
 <template>
   <header class="cac-header dark:bg-gray-900">
     <div class="flex flex-row w-full items-center">
-      <div class="w-1/5 flex">
+      <div class="w-1/5 flex items-center">
         <Button
-          icon="pi pi-bars"
+          v-bind:icon="expand ? 'pi pi-times' : 'pi pi-bars'"
           class="p-button-rounded p-button-text mr-2"
-          v-on:click.prevent="$emit('toggle', $event)"
+          v-on:click.prevent="this.expand = !this.expand; $emit('toggle', $event)"
         />
-        <h1 class="dark:text-white">{{ companyTitle }}</h1>
+        <h1 class="dark:text-white">
+          {{ companyTitle }}
+        </h1>
       </div>
       <div class="w-4/5 text-right">
         <Button
@@ -26,6 +28,7 @@ export default {
   data: function () {
     return {
       companyTitle: "MyApp",
+      expand: false,
     };
   },
   methods: {
@@ -43,7 +46,7 @@ export default {
   left: 0
   top: 0
   width: 100%
-  padding: 0 2rem
+  padding: 0 0.4rem
   background-color: var(--surface-card)
   transition: left .2s
   display: flex
