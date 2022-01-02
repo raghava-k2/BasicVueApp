@@ -13,6 +13,7 @@
         md:w-1/4
       "
     >
+      <h3 v-if="error.show">{{ error.message }}</h3>
       <h3 class="dark:text-white text-center text-xl">Login</h3>
       <div class="p-fluid">
         <div class="p-field">
@@ -24,24 +25,32 @@
           <InputText type="text" class="p-inputtext-sm" v-model="password" />
         </div>
         <div class="p-field">
-          <Button label="Submit" v-on:click.prevent="login" />
+          <Button
+            label="Submit"
+            class="p-button-sm"
+            v-on:click.prevent="loginUser"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   data: function () {
     return {
       username: "",
       password: "",
+      error: { show: false, message: "" },
     };
   },
   methods: {
-    login: function () {
-      this.$router.push({ path: "/" });
+    loginUser() {
+      const { username, password } = this;
+      this.login({ username, password });
     },
+    ...mapActions(["login"]),
   },
 };
 </script>

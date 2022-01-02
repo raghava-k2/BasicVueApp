@@ -14,7 +14,7 @@
             exact
           >
             <span class="flex-initial">
-              <i class="text-2xl" v-bind:class="item.icon"></i>
+              <i class="text-2xl " v-bind:class="item.icon"></i>
             </span>
             <span class="flex-1 ml-5"> {{ item.label }} </span>
           </router-link>
@@ -38,7 +38,11 @@ export default {
           label: "Login",
           route: "/login",
           icon: "pi pi-user",
-        },
+        },{
+          label: "Registration",
+          route: "/signup",
+          icon: "pi pi-user-plus",
+        }
       ],
     };
   },
@@ -70,6 +74,6 @@ export default {
 
   .cac-navbar-menu-item .active-item
     color: white
-  .cac-navbar-menu-item .pi-home
+  .cac-navbar-menu-item .pi
     font-size: 1.5rem
 </style>

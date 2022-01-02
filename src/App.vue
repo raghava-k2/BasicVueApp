@@ -1,7 +1,7 @@
 <template>
   <Header v-on:toggle.prevent="expanOrCollapseMenu" />
   <NavBar v-bind:toggle="expanOrCollapse" />
-  <main class="mt-14 ml-14 relative">
+  <main class="mt-14 ml-14">
     <router-view />
   </main>
 </template>
