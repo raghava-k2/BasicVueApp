@@ -1,17 +1,43 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../components/Login.vue'
-import Registration from '../components/Registration.vue'
+import Home from '@/views/Home.vue'
+import Login from '@/components/Login.vue'
+import Registration from '@/components/Registration.vue'
+import store from '@/store';
+import { user as userApi } from '@/api';
+
+const canUserAccess = async (to, from, next) => {
+  const { state } = store;
+  const { user = null } = state;
+  if (user) next();
+  else {
+    try {
+      const { data } = await userApi.isAlive();
+      store.state.user = data;
+      next();
+    } catch (e) {
+      next("/login");
+    }
+  }
+}
+
+const hasUserAccess = (to, from, next) => {
+  const { state } = store;
+  const { user = null } = state;
+  if (user) next("/");
+  else next();
+}
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    beforeEnter: [canUserAccess]
   }, {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    beforeEnter: [hasUserAccess]
   }, {
     path: '/signup',
     name: 'Signup',

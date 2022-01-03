@@ -7,6 +7,9 @@ const user = {
     },
     signup(userObj) {
         return axios.post(`${API.context}/user`, userObj);
+    },
+    isAlive(){
+        return axios.get(`${API.context}/isAlive`);
     }
 }
 
