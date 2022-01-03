@@ -2,6 +2,6 @@
     "version": 2,
     "public": false,
     "routes": [
-      { "src": "/api", "dest": "https://basic-node-app-221.herokuapp.com/" }
+      { "src": "/api/.*", "dest": "https://basic-node-app-221.herokuapp.com/" }
     ]
   }
