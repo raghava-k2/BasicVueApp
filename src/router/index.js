@@ -20,11 +20,19 @@ const canUserAccess = async (to, from, next) => {
   }
 }
 
-const hasUserAccess = (to, from, next) => {
+const hasUserAccess = async (to, from, next) => {
   const { state } = store;
   const { user = null } = state;
   if (user) next("/");
-  else next();
+  else {
+    try {
+      const { data } = await userApi.isAlive();
+      store.state.user = data;
+      next("/");
+    } catch (e) {
+      next();
+    }
+  }
 }
 
 const routes = [
