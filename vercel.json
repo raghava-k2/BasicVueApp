@@ -4,5 +4,5 @@
             "source": "/api",
             "destination": "https://basic-node-app-221.herokuapp.com/"
         }
-    ]
+    ],
 }
