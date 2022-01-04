@@ -1,5 +1,5 @@
 <template>
-  <Dashboard msg="hello dashboard"/>
+  <Dashboard/>
 </template>
 <script>
 import Dashboard from "@/components/Dashboard.vue";

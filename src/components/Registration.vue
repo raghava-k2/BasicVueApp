@@ -20,13 +20,12 @@
           <InputText
             id="username"
             type="text"
-            class="p-inputtext-sm"
             v-model="username"
           />
         </div>
         <div class="p-field">
           <label for="password" class="dark:text-white">Password</label>
-          <Password v-model="password" class="p-inputtext-sm">
+          <Password v-model="password">
             <template #header>
               <h6>Password Strength</h6>
             </template>
@@ -48,14 +47,12 @@
           <InputText
             id="mailId"
             type="email"
-            class="p-inputtext-sm"
             v-model="email"
           />
         </div>
         <div class="p-field">
           <Button
             label="Register"
-            class="p-button-sm"
             v-on:click.prevent="register"
           />
         </div>

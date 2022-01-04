@@ -18,16 +18,15 @@
       <div class="p-fluid">
         <div class="p-field">
           <label for="username" class="dark:text-white">Username</label>
-          <InputText type="text" class="p-inputtext-sm" v-model="username" />
+          <InputText type="text" v-model="username" />
         </div>
         <div class="p-field">
           <label for="password" class="dark:text-white">Password</label>
-          <InputText type="text" class="p-inputtext-sm" v-model="password" />
+          <InputText type="text" v-model="password" />
         </div>
         <div class="p-field">
           <Button
             label="Submit"
-            class="p-button-sm"
             v-on:click.prevent="loginUser"
           />
         </div>

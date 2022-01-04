@@ -1,14 +1,23 @@
 <template>
   <div class="hello dark:bg-gray-100">
-    <h1 class="dark:text-black">{{ msg }}</h1>
+    <FileUpload
+      name="fileUpload"
+      class="p-button-sm"
+      :multiple="true"
+      :maxFileSize="1000000"
+      chooseLabel="Browse"
+      :customUpload="true"
+      @uploader="onUpload"
+    />
   </div>
 </template>
-
 <script>
 export default {
   name: "HelloWorld",
-  props: {
-    msg: String,
+  methods: {
+    onUpload: function (e) {
+      console.log(e);
+    },
   },
 };
 </script>
