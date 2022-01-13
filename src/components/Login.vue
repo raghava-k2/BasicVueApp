@@ -1,18 +1,6 @@
 <template>
-  <div class="flex items-center dark:bg-gray-50">
-    <div
-      class="
-        card
-        w-full
-        m-auto
-        dark:bg-gray-800
-        px-4
-        py-2
-        rounded-sm
-        mt-20
-        md:w-1/4
-      "
-    >
+  <div class="flex items-start justify-center dark:bg-gray-50 login-container">
+    <div class="card w-full dark:bg-gray-800 px-4 py-2 rounded-sm md:w-1/4">
       <h3 v-if="error.show">{{ error.message }}</h3>
       <h3 class="dark:text-white text-center text-xl">Login</h3>
       <div class="p-fluid">
@@ -25,10 +13,7 @@
           <InputText type="text" v-model="password" />
         </div>
         <div class="p-field">
-          <Button
-            label="Submit"
-            v-on:click.prevent="loginUser"
-          />
+          <Button label="Submit" v-on:click.prevent="loginUser" />
         </div>
       </div>
     </div>
@@ -54,4 +39,7 @@ export default {
 };
 </script>
 <style scoped>
+.login-container {
+  height: calc(100vh -50px);
+}
 </style>

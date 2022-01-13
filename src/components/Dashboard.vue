@@ -8,16 +8,30 @@
       chooseLabel="Browse"
       :customUpload="true"
       @uploader="onUpload"
-    />
+      ref="fileUpload"
+    >
+      <template #empty> Drag and drop files here to upload. </template>
+    </FileUpload>
+    <FileList :files="files" />
   </div>
 </template>
 <script>
+import FileList from "@/components/FileList.vue";
 export default {
   name: "HelloWorld",
+  data: function () {
+    return {
+      files: [],
+    };
+  },
   methods: {
-    onUpload: function (e) {
-      console.log(e);
+    onUpload: function ({ files }) {
+      this.$refs.fileUpload.clear();
+      this.files = files;
     },
+  },
+  components: {
+    FileList,
   },
 };
 </script>

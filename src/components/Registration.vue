@@ -1,27 +1,12 @@
 <template>
-  <div class="flex items-center dark:bg-gray-50">
-    <div
-      class="
-        card
-        w-full
-        m-auto
-        dark:bg-gray-800
-        px-4
-        py-2
-        rounded-md
-        mt-20
-        md:w-1/4
-      "
-    >
+  <div
+    class="flex items-start justify-center dark:bg-gray-50 registr-container">
+    <div class="card w-full dark:bg-gray-800 px-4 py-2 rounded-md md:w-1/4">
       <h3 class="dark:text-white text-center text-xl">Registration</h3>
       <div class="p-fluid">
         <div class="p-field">
           <label for="username" class="dark:text-white">Username</label>
-          <InputText
-            id="username"
-            type="text"
-            v-model="username"
-          />
+          <InputText id="username" type="text" v-model="username" />
         </div>
         <div class="p-field">
           <label for="password" class="dark:text-white">Password</label>
@@ -44,17 +29,10 @@
         </div>
         <div class="p-field">
           <label for="mailId" class="dark:text-white">Mail Id</label>
-          <InputText
-            id="mailId"
-            type="email"
-            v-model="email"
-          />
+          <InputText id="mailId" type="email" v-model="email" />
         </div>
         <div class="p-field">
-          <Button
-            label="Register"
-            v-on:click.prevent="register"
-          />
+          <Button label="Register" v-on:click.prevent="register" />
         </div>
       </div>
     </div>
@@ -81,3 +59,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.registr-container {
+  height: calc(100vh -50px);
+}
+</style>
