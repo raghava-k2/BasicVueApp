@@ -1,9 +1,21 @@
 <template>
   <div
-    class="flex flex-row flex-wrap justify-center items-center md:justify-center"
+    class="
+      flex flex-row flex-wrap
+      justify-center
+      items-center
+      md:justify-center
+    "
   >
     <File v-for="item of files" :key="item.name" :data="item" />
     <File v-for="item of fileArray" :key="item.fileId" :data="item" />
+    <div
+      v-if="!((files || []).length || fileArray.length)"
+      class="my-12 text-center"
+    >
+      <h4 class="text-xl font-bold">No Files are present currently</h4>
+      <h5 class="text-lg">Please use the above browse option to upload files</h5>
+    </div>
   </div>
 </template>
 

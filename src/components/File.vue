@@ -99,7 +99,7 @@ export default {
         .download(this.data.fileId)
         .then(({ data }) => {
           this.blockUser = false;
-          this.url = `data:image/png;base64,${data.content}`;
+          this.url = `data:image/jpg;base64,${data.content}`;
         })
         .catch(({ response: { data } }) => {
           console.log(data);
