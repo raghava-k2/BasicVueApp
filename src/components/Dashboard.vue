@@ -4,7 +4,7 @@
       name="fileUpload"
       class="p-button-sm"
       :multiple="true"
-      :maxFileSize="1000000"
+      :maxFileSize="100000000"
       chooseLabel="Browse"
       :customUpload="true"
       @uploader="onUpload"
@@ -27,7 +27,7 @@ export default {
   methods: {
     onUpload: function ({ files }) {
       this.$refs.fileUpload.clear();
-      this.files = files;
+      this.files = [...files,...this.files];
     },
   },
   components: {
