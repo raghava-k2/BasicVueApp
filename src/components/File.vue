@@ -29,7 +29,7 @@
         :blocked="blockUser"
         :autoZIndex="false"
       >
-        <ProgressSpinner class="h-12 w-12" strokeWidth="8" v-if="!isReupload" />
+        <ProgressSpinner class="h-12 w-12" strokeWidth="5" v-if="!isReupload" />
         <Button
           icon="pi pi-replay"
           class="p-button-rounded z-10"
