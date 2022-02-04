@@ -5,7 +5,7 @@
         <li
           v-for="item in menus"
           :key="item.index"
-          class="cac-navbar-menu-item p-2 rounded-md dark:text-white"
+          class="cac-navbar-menu-item p-2 pl-1.5 rounded-md dark:text-white"
         >
           <router-link
             :to="item.route"
@@ -35,13 +35,13 @@ export default {
           icon: "pi pi-home",
         },
         {
-          label: "Login",
-          route: "/login",
-          icon: "pi pi-user",
+          label: "Folders",
+          route: "/folders",
+          icon: "pi pi-folder",
         },{
-          label: "Registration",
-          route: "/signup",
-          icon: "pi pi-user-plus",
+          label: "Shared",
+          route: "/shared",
+          icon: "pi pi-external-link",
         }
       ],
     };
@@ -73,7 +73,7 @@ export default {
     background: #18353d
 
   .cac-navbar-menu-item .active-item
-    color: white
+    color: white !important
   .cac-navbar-menu-item .pi
     font-size: 1.5rem
 </style>

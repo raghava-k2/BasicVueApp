@@ -7,6 +7,9 @@ const mutations = {
     },
     isUserLoggedIn(state, flag) {
         return state.isUserLoggedIn = flag;
+    },
+    blockUserAppLevel(state, flag) {
+        return state.blockUserAppLevel = flag;
     }
 }
 

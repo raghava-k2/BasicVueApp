@@ -5,29 +5,28 @@
         <Button
           v-bind:icon="expand ? 'pi pi-times' : 'pi pi-bars'"
           class="p-button-rounded p-button-text mr-2"
-          v-on:click.prevent="this.expand = !this.expand; $emit('toggle', $event)"
+          v-on:click.prevent="
+            this.expand = !this.expand;
+            $emit('toggle', $event);
+          "
         />
-        <h1 class="dark:text-white">
+        <h1 class="text-black dark:text-white">
           {{ companyTitle }}
         </h1>
       </div>
       <div class="w-4/5 text-right">
-        <Button
-          label="Signin"
-          icon="pi pi-user"
-          class="p-button-link dark:text-blue-700"
-          v-on:click.prevent="login"
-        />
+        <User />
       </div>
     </div>
   </header>
 </template>
 <script>
+import User from "@/components/user/User.vue";
 export default {
   name: "Header",
   data: function () {
     return {
-      companyTitle: "MyApp",
+      companyTitle: "My-Files",
       expand: false,
     };
   },
@@ -35,6 +34,9 @@ export default {
     login: function () {
       this.$router.push({ path: "login" });
     },
+  },
+  components: {
+    User: User,
   },
 };
 </script>

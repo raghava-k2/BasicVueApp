@@ -11,19 +11,28 @@ const handleError = (commit, data) => {
 
 const actions = {
     login({ commit }, userObj) {
+        commit('blockUserAppLevel', true);
         user.login(userObj).then(() => {
+            commit('blockUserAppLevel', false);
             commit('isUserLoggedIn', true);
         }).catch(({ response: { data } }) => {
+            commit('blockUserAppLevel', false);
             handleError(commit, data);
         });
     },
     signup({ commit }, userObj) {
+        commit('blockUserAppLevel', true);
         user.signup(userObj).then(() => {
+            commit('blockUserAppLevel', false);
             const { name: username, password } = userObj;
             this.dispatch('login', { username, password });
         }).catch(({ response: { data } }) => {
+            commit('blockUserAppLevel', false);
             handleError(commit, data);
         });
+    },
+    blockUserAppLevel(commit, flag) {
+        commit('blockUserAppLevel', flag);
     }
 }
 

@@ -4,6 +4,17 @@
   <main class="mt-14 ml-14">
     <router-view />
   </main>
+  <BlockUI
+    class="flex justify-center items-center w-full h-full absolute inset-0"
+    :blocked="blockUserAppLevel"
+    v-if="blockUserAppLevel"
+  >
+    <ProgressSpinner
+      class="h-12 w-12"
+      strokeWidth="5"
+      v-if="blockUserAppLevel"
+    />
+  </BlockUI>
   <Toast position="top-right" group="message" />
 </template>
 <script>
@@ -19,7 +30,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["toasterMessage", "isUserLoggedIn"]),
+    ...mapState(["toasterMessage", "isUserLoggedIn", "blockUserAppLevel"]),
   },
   methods: {
     expanOrCollapseMenu: function () {

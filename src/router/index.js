@@ -8,6 +8,7 @@ import { user as userApi } from '@/api';
 const canUserAccess = async (to, from, next) => {
   const { state } = store;
   const { user = null } = state;
+  store.state.blockUserAppLevel = true;
   if (user) next();
   else {
     try {
@@ -18,11 +19,13 @@ const canUserAccess = async (to, from, next) => {
       next("/login");
     }
   }
+  store.state.blockUserAppLevel = false;
 }
 
-const hasUserAccess = async (to, from, next) => {
+const isUserSessionActive = async (to, from, next) => {
   const { state } = store;
   const { user = null } = state;
+  store.state.blockUserAppLevel = true;
   if (user) next("/");
   else {
     try {
@@ -33,6 +36,7 @@ const hasUserAccess = async (to, from, next) => {
       next();
     }
   }
+  store.state.blockUserAppLevel = false;
 }
 
 const routes = [
@@ -45,7 +49,7 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
-    beforeEnter: [hasUserAccess]
+    beforeEnter: [isUserSessionActive]
   }, {
     path: '/signup',
     name: 'Signup',
