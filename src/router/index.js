@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home.vue'
-import Login from '@/components/Login.vue'
-import Registration from '@/components/Registration.vue'
-import store from '@/store';
-import { user as userApi } from '@/api';
+import Home from '../views/Home.vue'
+import Login from '../components/Login.vue'
+import Registration from '../components/Registration.vue'
+import store from '../store';
+import { user as userApi } from '../api';
 
 const canUserAccess = async (to, from, next) => {
   const { state } = store;
@@ -62,7 +62,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory('/'),
   routes
 });
 

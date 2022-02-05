@@ -1,6 +1,7 @@
 <template>
   <div
-    class="flex items-start justify-center dark:bg-gray-50 registr-container">
+    class="flex items-start justify-center dark:bg-gray-50 registr-container"
+  >
     <div class="card w-full dark:bg-gray-800 px-4 py-2 rounded-md md:w-1/4">
       <h3 class="dark:text-white text-center text-xl">Registration</h3>
       <div class="p-fluid">
@@ -38,7 +39,7 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 export default {
   name: "Registration",
   data: function () {
@@ -61,6 +62,6 @@ export default {
 </script>
 <style scoped>
 .registr-container {
-  height: calc(100vh -50px);
+  height: calc(100vh - 50px);
 }
 </style>

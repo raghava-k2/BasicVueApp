@@ -17,9 +17,9 @@
   </BlockUI>
   <Toast position="top-right" group="message" />
 </template>
-<script>
-import Header from "@/components/Header.vue";
-import NavBar from "@/components/NavBar.vue";
+<script lang="ts">
+import Header from "./components/Header.vue";
+import NavBar from "./components/NavBar.vue";
 import { mapState } from "vuex";
 
 export default {

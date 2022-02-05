@@ -15,8 +15,8 @@
     <FileList :files="files" />
   </div>
 </template>
-<script>
-import FileList from "@/components/FileList.vue";
+<script lang="ts">
+import FileList from "../components/FileList.vue";
 export default {
   name: "HelloWorld",
   data: function () {

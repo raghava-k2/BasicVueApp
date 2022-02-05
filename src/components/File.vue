@@ -40,8 +40,8 @@
     </div>
   </div>
 </template>
-<script>
-import { file } from "@/api";
+<script lang="ts">
+import { file } from "../api";
 
 export default {
   data: function () {

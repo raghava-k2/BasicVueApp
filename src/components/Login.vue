@@ -19,7 +19,7 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { mapActions } from "vuex";
 export default {
   data: function () {
@@ -40,6 +40,6 @@ export default {
 </script>
 <style scoped>
 .login-container {
-  height: calc(100vh -50px);
+  height: calc(100vh - 50px);
 }
 </style>

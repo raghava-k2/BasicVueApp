@@ -28,9 +28,9 @@
   </div>
 </template>
 
-<script>
-import File from "@/components/File.vue";
-import { file } from "@/api";
+<script lang="ts">
+import File from "../components/File.vue";
+import { file } from "../api";
 
 export default {
   props: {

@@ -15,24 +15,71 @@
         </h1>
       </div>
       <div class="w-4/5 text-right">
+        <Button
+          v-bind:icon="theme === 'light' ? 'pi pi-moon' : 'pi pi-sun'"
+          class="p-button-rounded p-button-text mr-2"
+          v-on:click.prevent="changeTheme"
+        />
         <User />
       </div>
     </div>
   </header>
 </template>
-<script>
-import User from "@/components/user/User.vue";
+<script lang="ts">
+import User from "../components/user/User.vue";
 export default {
   name: "Header",
   data: function () {
     return {
       companyTitle: "My-Files",
       expand: false,
+      theme: "light",
     };
+  },
+  mounted: function () {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      this.theme = "dark";
+      document.documentElement.classList.add("dark");
+    } else {
+      this.theme = "light";
+      document.documentElement.classList.remove("dark");
+    }
+    this.changePrimeTheme();
   },
   methods: {
     login: function () {
       this.$router.push({ path: "login" });
+    },
+    changeTheme() {
+      if (this.theme === "light") {
+        this.theme = "dark";
+        document.documentElement.classList.add("dark");
+      } else {
+        this.theme = "light";
+        document.documentElement.classList.remove("dark");
+      }
+      localStorage.setItem("theme", this.theme);
+      this.changePrimeTheme();
+    },
+    changePrimeTheme() {
+      const linkTag =
+        document.getElementById("prime-theme") || this.createLinkTag();
+      if (this.theme === "light") {
+        linkTag.href = "https://unpkg.com/primevue/resources/themes/lara-light-indigo/theme.css";
+      } else {
+        linkTag.href = "https://unpkg.com/primevue/resources/themes/lara-dark-indigo/theme.css";
+      }
+    },
+    createLinkTag() {
+      const linkTag = document.createElement("link");
+      linkTag.setAttribute("id", "prime-theme");
+      linkTag.setAttribute("rel", "stylesheet");
+      document.head.append(linkTag);
+      return linkTag;
     },
   },
   components: {

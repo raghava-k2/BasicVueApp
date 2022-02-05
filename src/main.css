@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{
+    font-size: 14px;
+}
+  
+button, input, optgroup, select, textarea {
+    line-height: normal;
+}
