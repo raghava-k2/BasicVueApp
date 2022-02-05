@@ -1,7 +1,7 @@
 <template>
   <header class="cac-header dark:bg-gray-900">
     <div class="flex flex-row w-full items-center">
-      <div class="w-1/5 flex items-center">
+      <div class="w-2/5 md:w-1/5 flex items-center">
         <Button
           v-bind:icon="expand ? 'pi pi-times' : 'pi pi-bars'"
           class="p-button-rounded p-button-text mr-2"
@@ -10,14 +10,14 @@
             $emit('toggle', $event);
           "
         />
-        <h1 class="text-black dark:text-white">
+        <h1 class="text-black dark:text-white w-full">
           {{ companyTitle }}
         </h1>
       </div>
-      <div class="w-4/5 text-right">
+      <div class="w-3/5 md:w-4/5 text-right">
         <Button
           v-bind:icon="theme === 'light' ? 'pi pi-moon' : 'pi pi-sun'"
-          class="p-button-rounded p-button-text mr-2"
+          class="p-button-rounded p-button-text"
           v-on:click.prevent="changeTheme"
         />
         <User />

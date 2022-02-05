@@ -1,7 +1,7 @@
 <template>
   <Button
     icon="pi pi-user"
-    class="p-button-rounded p-button-text mr-2"
+    class="p-button-rounded p-button-text !mr-2 !px-0"
     @click="userIconClick"
     :label="user?.name"
   />
