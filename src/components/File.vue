@@ -13,8 +13,8 @@
     "
   >
     <div class="flex flex-col flex-wrap justify-center items-center">
-      <div class="header-image">
-        <Image :src="url" :alt="name" preview class="header-image" />
+      <div class="header-image-container w-full">
+        <Image :src="url" :alt="name" preview class="header-image w-full" />
       </div>
       <div class="truncate w-full text-center text-blue-900">
         <span :title="name">{{ name }}</span>
@@ -29,7 +29,11 @@
         :blocked="blockUser"
         :autoZIndex="false"
       >
-        <ProgressSpinner class="h-12 w-12" strokeWidth="5" v-if="!isReupload" />
+        <ProgressSpinner
+          class="!h-12 !w-12"
+          strokeWidth="5"
+          v-if="!isReupload"
+        />
         <Button
           icon="pi pi-replay"
           class="p-button-rounded z-10"
@@ -118,16 +122,19 @@ export default {
   overflow: hidden;
 }
 
-.header-image {
+.header-image,
+.header-image-container {
   height: 15.625rem;
   overflow: hidden;
 }
 
-.border-color {
-  border-color: #bce8f1;
+:deep() .header-image > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
-.p-blockui.p-component-overlay {
-  z-index: 1 !important;
+.border-color {
+  border-color: #bce8f1;
 }
 </style>

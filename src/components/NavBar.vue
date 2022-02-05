@@ -5,12 +5,12 @@
         <li
           v-for="item in menus"
           :key="item.index"
-          class="cac-navbar-menu-item p-2 pl-1.5 rounded-md dark:text-white"
+          class="cac-navbar-menu-item p-2 pl-1.5 rounded-md"
         >
           <router-link
             :to="item.route"
-            class="flex items-center text-green-700"
-            active-class="active-item"
+            class="flex items-center text-green-500"
+            active-class="text-green-900 dark:text-white"
             exact
           >
             <span class="flex-initial">
