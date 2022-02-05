@@ -10,7 +10,7 @@
     v-if="blockUserAppLevel"
   >
     <ProgressSpinner
-      class="h-12 w-12"
+      class="!h-12 !w-12"
       strokeWidth="5"
       v-if="blockUserAppLevel"
     />

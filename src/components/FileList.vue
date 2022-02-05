@@ -23,7 +23,7 @@
       :blocked="blockUser"
       :autoZIndex="false"
     >
-      <ProgressSpinner strokeWidth="5" v-if="blockUser"/>
+      <ProgressSpinner  class="!h-12 !w-12" strokeWidth="5" v-if="blockUser"/>
     </BlockUI>
   </div>
 </template>
