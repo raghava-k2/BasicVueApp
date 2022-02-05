@@ -5,7 +5,7 @@
     <router-view />
   </main>
   <BlockUI
-    class="flex justify-center items-center w-full h-full absolute inset-0"
+    class="!flex !justify-center !items-center !w-full !h-full !absolute !inset-0"
     :blocked="blockUserAppLevel"
     v-if="blockUserAppLevel"
   >
