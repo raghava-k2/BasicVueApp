@@ -31,8 +31,11 @@ const actions = {
             handleError(commit, data);
         });
     },
-    blockUserAppLevel(commit, flag) {
+    blockUserAppLevel({ commit }, flag) {
         commit('blockUserAppLevel', flag);
+    },
+    addToasterMessage({ commit }, data) {
+        handleError(commit, data);
     }
 }
 

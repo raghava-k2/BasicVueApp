@@ -13,6 +13,17 @@
     "
   >
     <div class="flex flex-col flex-wrap justify-center items-center">
+      <div class="header-actions absolute hidden w-full top-0 z-10">
+        <Button
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-text"
+          @click="deleteFile"
+        />
+        <Button
+          icon="pi pi-download"
+          class="p-button-rounded p-button-text float-right"
+        />
+      </div>
       <div class="header-image-container w-full">
         <Image :src="url" :alt="name" preview class="header-image w-full" />
       </div>
@@ -29,15 +40,11 @@
         :blocked="blockUser"
         :autoZIndex="false"
       >
-        <ProgressSpinner
-          class="!h-12 !w-12"
-          strokeWidth="5"
-          v-if="!isReupload"
-        />
+        <ProgressSpinner class="!h-12 !w-12" strokeWidth="5" v-if="!retry" />
         <Button
           icon="pi pi-replay"
           class="p-button-rounded z-10"
-          v-if="isReupload"
+          v-if="retry"
           @click="callEitherDownloadOrUpload"
         />
       </BlockUI>
@@ -45,6 +52,7 @@
   </div>
 </template>
 <script lang="ts">
+import { mapActions } from "vuex";
 import { file } from "../api";
 
 export default {
@@ -53,7 +61,7 @@ export default {
       url: "",
       name: "",
       blockUser: false,
-      isReupload: false,
+      retry: false,
     };
   },
   props: {
@@ -79,7 +87,7 @@ export default {
     },
     uploadFile() {
       this.blockUser = true;
-      this.isReupload = false;
+      this.retry = false;
       const formData = new FormData();
       formData.append("file", this.data);
       const config = {
@@ -90,27 +98,39 @@ export default {
         .then(() => {
           this.blockUser = false;
         })
-        .catch(({ response: { data } }) => {
-          console.log("error : ", data);
+        .catch(() => {
           this.blockUser = true;
-          this.isReupload = true;
+          this.retry = true;
         });
     },
     downloadFile() {
       this.blockUser = true;
-      this.isReupload = false;
+      this.retry = false;
       file
         .download(this.data.fileId)
         .then(({ data }) => {
           this.blockUser = false;
           this.url = `data:image/jpg;base64,${data.content}`;
         })
-        .catch(({ response: { data } }) => {
-          console.log(data);
+        .catch(() => {
           this.blockUser = true;
-          this.isReupload = true;
+          this.retry = true;
         });
     },
+    deleteFile() {
+      this.blockUser = true;
+      file
+        .delete(this.data.fileId)
+        .then(() => {
+          this.$emit("delete", this.data);
+          this.blockUser = false;
+        })
+        .catch(() => {
+          this.addToasterMessage("Failed to delete file.Please retry again");
+          this.blockUser = false;
+        });
+    },
+    ...mapActions(["addToasterMessage"]),
   },
 };
 </script>
@@ -120,6 +140,11 @@ export default {
   min-height: 18.75rem;
   max-height: 18.75rem;
   overflow: hidden;
+}
+
+.file-container:hover .header-actions {
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .header-image,

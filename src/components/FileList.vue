@@ -23,7 +23,7 @@
       :blocked="blockUser"
       :autoZIndex="false"
     >
-      <ProgressSpinner  class="!h-12 !w-12" strokeWidth="5" v-if="blockUser"/>
+      <ProgressSpinner class="!h-12 !w-12" strokeWidth="5" v-if="blockUser" />
     </BlockUI>
   </div>
 </template>
@@ -39,6 +39,8 @@ export default {
   data: () => ({
     page: 0,
     rows: 50,
+    sortField: "createdOn",
+    sortOrder: -1,
     fileArray: [],
     blockUser: false,
   }),
@@ -47,10 +49,10 @@ export default {
   },
   methods: {
     getFiles() {
-      const { page, rows } = this;
+      const { page, rows, sortField, sortOrder } = this;
       this.blockUser = true;
       file
-        .get({ page, size: rows })
+        .get({ page, size: rows, sortField, sortOrder })
         .then(({ data }) => {
           this.fileArray = data.rows;
           this.blockUser = false;

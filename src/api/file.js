@@ -10,6 +10,9 @@ const user = {
     },
     download(fileId) {
         return axios.get(`${API.context}/file/download/${fileId}`);
+    },
+    delete(fileId) {
+        return axios.delete(`${API.context}/file/${fileId}`);
     }
 }
 
