@@ -5,7 +5,7 @@
       py-2
       md:w-60
       w-80
-      border-solid border-color border-4
+      border-solid border-color border
       mx-2
       my-2
       relative
@@ -16,18 +16,20 @@
       <div class="header-actions absolute hidden w-full top-0 z-10">
         <Button
           icon="pi pi-trash"
-          class="p-button-rounded p-button-text"
+          class="p-button-rounded p-button-text !text-white"
           @click="deleteFile"
         />
         <Button
           icon="pi pi-download"
-          class="p-button-rounded p-button-text float-right"
+          class="p-button-rounded p-button-text float-right !text-white"
+          @click="downloadFileFromServer"
         />
       </div>
       <div class="header-image-container w-full">
-        <Image :src="url" :alt="name" preview class="header-image w-full" />
+        <i class="pi pi-file text-green-500 dark:text-orange-200" v-if="!/^image/.test(data.type)"></i>
+        <Image :src="url" :alt="name" preview class="header-image w-full" v-if="/^image/.test(data.type)"/>
       </div>
-      <div class="truncate w-full text-center text-blue-900">
+      <div class="truncate w-full text-center text-blue-900 dark:text-white">
         <span :title="name">{{ name }}</span>
       </div>
     </div>
@@ -54,6 +56,7 @@
 <script lang="ts">
 import { mapActions } from "vuex";
 import { file } from "../api";
+import { saveAs } from "file-saver";
 
 export default {
   data: function () {
@@ -74,13 +77,15 @@ export default {
       this.uploadFile();
     } else {
       this.name = this.data.originalName;
-      this.downloadFile();
+      if (/^image/.test(this.data.type)) {
+        this.downloadImage();
+      }
     }
   },
   methods: {
     callEitherDownloadOrUpload() {
       if (this.data.fileId) {
-        this.downloadFile();
+        this.downloadImage();
       } else {
         this.uploadFile();
       }
@@ -103,7 +108,7 @@ export default {
           this.retry = true;
         });
     },
-    downloadFile() {
+    downloadImage() {
       this.blockUser = true;
       this.retry = false;
       file
@@ -130,6 +135,31 @@ export default {
           this.blockUser = false;
         });
     },
+    downloadFileFromServer() {
+      const { fileId, originalName } = this.data;
+      this.blockUser = true;
+      this.retry = false;
+      file
+        .download(fileId)
+        .then(({ data }) => {
+          this.blockUser = false;
+          const blob = this.base64StringToBlob(data.content);
+          saveAs(blob, originalName);
+        })
+        .catch((e: any) => {
+          this.addToasterMessage("Failed to download file.Please retry again");
+          this.blockUser = true;
+          this.retry = true;
+        });
+    },
+    base64StringToBlob(base64String: any) {
+      const byteArray = Uint8Array.from(
+        atob(base64String)
+          .split("")
+          .map((char) => char.charCodeAt(0))
+      );
+      return new Blob([byteArray]);
+    },
     ...mapActions(["addToasterMessage"]),
   },
 };
@@ -153,10 +183,15 @@ export default {
   overflow: hidden;
 }
 
+.header-image-container > i{
+  font-size: 180px;
+}
+
 :deep() .header-image > img {
   height: 100%;
-  width: 100%;
-  object-fit: cover;
+  inline-size: 100%;
+  object-fit: fill;
+  aspect-ratio: 16/ 9;
 }
 
 .border-color {

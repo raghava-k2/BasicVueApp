@@ -9,9 +9,10 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "core-js": "^3.6.5",
+    "file-saver": "^2.0.5",
     "primeflex": "^2.0.0",
     "primeicons": "^5.0.0",
-    "core-js": "^3.6.5",
     "primevue": "^3.11.1",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12",

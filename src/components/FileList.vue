@@ -8,7 +8,12 @@
     "
   >
     <File v-for="item of files" :key="item.name" :data="item" />
-    <File v-for="item of fileArray" :key="item.fileId" :data="item" />
+    <File
+      v-for="item of fileArray"
+      :key="item.fileId"
+      :data="item"
+      @delete="deletedFile"
+    />
     <div
       v-if="!(files?.length || fileArray?.length) && !blockUser"
       class="my-12 text-center"
@@ -49,7 +54,7 @@ export default {
   },
   methods: {
     getFiles() {
-      const { page, rows, sortField, sortOrder } = this;
+      const { page, rows, sortField, sortOrder } = this as any;
       this.blockUser = true;
       file
         .get({ page, size: rows, sortField, sortOrder })
@@ -61,6 +66,10 @@ export default {
           this.blockUser = false;
           console.log("error : ", data);
         });
+    },
+    deletedFile({ fileId }) {
+      const index = this.fileArray.findIndex((i) => i.fileId === fileId);
+      this.fileArray.splice(index, 1);
     },
   },
   components: {

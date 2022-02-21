@@ -1,10 +1,10 @@
 <template>
-  <div class="hello dark:bg-gray-100">
+  <div class="hello dark:bg-gray-900">
     <FileUpload
       name="fileUpload"
       class="p-button-sm"
       :multiple="true"
-      :maxFileSize="100000000"
+      :maxFileSize="100000"
       chooseLabel="Browse"
       :customUpload="true"
       @uploader="onUpload"

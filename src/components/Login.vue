@@ -15,6 +15,15 @@
         <div class="p-field">
           <Button label="Submit" v-on:click.prevent="loginUser" />
         </div>
+        <div class="p-field text-right">
+          <router-link
+            to="/signup"
+            class="flex items-center text-blue-900 dark:text-blue-400"
+            exact
+          >
+            <span class="flex-1 ml-5">Sign up</span>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
