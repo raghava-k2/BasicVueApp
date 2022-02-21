@@ -26,8 +26,17 @@
         />
       </div>
       <div class="header-image-container w-full">
-        <i class="pi pi-file text-green-500 dark:text-orange-200" v-if="!/^image/.test(data.type)"></i>
-        <Image :src="url" :alt="name" preview class="header-image w-full" v-if="/^image/.test(data.type)"/>
+        <i
+          class="pi pi-file text-green-500 dark:text-orange-200"
+          v-if="!/^image/.test(data.type)"
+        ></i>
+        <Image
+          :src="url"
+          :alt="name"
+          preview
+          class="header-image w-full"
+          v-if="/^image/.test(data.type)"
+        />
       </div>
       <div class="truncate w-full text-center text-blue-900 dark:text-white">
         <span :title="name">{{ name }}</span>
@@ -100,7 +109,8 @@ export default {
       };
       file
         .upload(formData, config)
-        .then(() => {
+        .then(({ data }) => {
+          this.data.fileId = data.fileId;
           this.blockUser = false;
         })
         .catch(() => {
@@ -183,7 +193,7 @@ export default {
   overflow: hidden;
 }
 
-.header-image-container > i{
+.header-image-container > i {
   font-size: 180px;
 }
 

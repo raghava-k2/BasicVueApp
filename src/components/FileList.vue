@@ -18,8 +18,8 @@
       v-if="!(files?.length || fileArray?.length) && !blockUser"
       class="my-12 text-center"
     >
-      <h4 class="text-xl font-bold">No Files are present currently</h4>
-      <h5 class="text-lg">
+      <h4 class="text-xl font-bold dark:text-white">No Files are present currently</h4>
+      <h5 class="text-lg dark:text-white">
         Please use the above browse option to upload files
       </h5>
     </div>

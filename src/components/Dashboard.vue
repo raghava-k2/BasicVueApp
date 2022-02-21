@@ -4,7 +4,7 @@
       name="fileUpload"
       class="p-button-sm"
       :multiple="true"
-      :maxFileSize="100000"
+      :maxFileSize="10000000"
       chooseLabel="Browse"
       :customUpload="true"
       @uploader="onUpload"
